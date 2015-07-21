@@ -41,6 +41,6 @@ I use this package to allow my other packages to test for security privileges wi
             // user has edit privileges
         }
 
-If a macro was not previously defined then the privilege test will return false. Effectively, if the macro is not implemented then the privilege is treated as not existent for every user.
+    If a macro was not previously defined then the privilege test will return false. Effectively, if the macro is not implemented then the privilege is treated as not existent for every user.
 
 The implementation is more of a convention that is implemented by Laravel's MacroableTrait. I don't see this package changing unless I get an epiphany. So consider this package code complete. However, suggestions are appreciated and welcome. :)
