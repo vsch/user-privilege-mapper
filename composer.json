@@ -1,5 +1,5 @@
 {
-    "name": "vsch/user-priviledge-mapper",
+    "name": "vsch/user-privilege-mapper",
     "description": "A Service Provider to handle testing of available user security privileges independent of User Model implementation",
     "authors": [
         {
