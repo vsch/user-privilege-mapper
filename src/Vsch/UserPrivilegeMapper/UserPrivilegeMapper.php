@@ -14,8 +14,6 @@ class UserPrivilegeMapper
 {
     use MacroableTrait;
 
-    protected $app;
-
     /**
      * UserPrivilegeMapper constructor.
      *
@@ -24,21 +22,16 @@ class UserPrivilegeMapper
     public
     function __construct($app)
     {
-        $this->app = $app;
     }
 
-    /**
-     * @param string $privilege text name of the privilege to test for the currently logged in user
-     *
-     * @return bool
-     */
-    public
-    function isUserPrivilegedTo($privilege)
+    public static function __callStatic($method, $parameters)
     {
-        $user = Auth::user();
+        if (static::hasMacro($method))
+        {
+            return call_user_func_array(static::$macros[$method], $parameters);
+        }
 
-        if ($user && !self::hasMacro($privilege)) return false;
-
-        return self::$privilege($user);
+        return false;
     }
+
 }
