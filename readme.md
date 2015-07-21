@@ -8,7 +8,7 @@ I use this package to allow my other packages to test for security privileges wi
 
 1. Require this package in your composer.json and run composer update (or run `composer require vsch/user-privilege-mapper:*` directly):
 
-        "vsch/user-privilege-mapper": "1.*"
+        "vsch/user-privilege-mapper": "~1.0"
 
 2. After updating composer, add the ServiceProviders to the providers array in app/config/app.php and comment out the original TranslationServiceProvider:
 
