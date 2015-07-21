@@ -1,6 +1,6 @@
 {
     "name": "vsch/user-priviledge-mapper",
-    "description": "A Service Provider to handle user privilege mappings independent of User Model implementation",
+    "description": "A Service Provider to handle testing of available user security privileges independent of User Model implementation",
     "authors": [
         {
             "name": "Vladimir Schneider",
