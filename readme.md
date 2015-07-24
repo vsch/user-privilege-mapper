@@ -4,6 +4,10 @@ This package implements a simple Service Provider that enables mapping of user p
 
 I use this package to allow my other packages to test for security privileges without having to dictate how the user model is defined within a project.
 
+For Laravel 4 use the Laravel4 branch, or require: `"vsch/user-privilege-mapper": "~1.0"`
+
+For Laravel 5 use the master branch, or require: `"user-privilege-mapper": "~2.0"`
+
 ## Installation
 
 1. Require this package in your composer.json and run composer update (or run `composer require vsch/user-privilege-mapper:*` directly):
