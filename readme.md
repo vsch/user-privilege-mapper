@@ -14,7 +14,7 @@ For Laravel 5 use the master branch, or require: `"user-privilege-mapper": "~2.0
 
         "vsch/user-privilege-mapper": "~1.0"
 
-2. After updating composer, add the ServiceProviders to the providers array in app/config/app.php and comment out the original TranslationServiceProvider:
+2. After updating composer, add the ServiceProviders to the providers array in app/config/app.php
 
         'Vsch\UserPrivilegeMapper\UserPrivilegeMapperServiceProvider',
 
