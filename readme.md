@@ -6,23 +6,23 @@ I use this package to allow my other packages to test for security privileges wi
 
 For Laravel 4 use the Laravel4 branch, or require: `"vsch/user-privilege-mapper": "~1.0"`
 
-For Laravel 5 use the master branch, or require: `"user-privilege-mapper": "~2.0"`
+For Laravel 5 use the master branch, or require: `"vsch/user-privilege-mapper": "~2.0"`
 
 ## Installation
 
 1. Require this package in your composer.json and run composer update (or run `composer require vsch/user-privilege-mapper:*` directly):
 
-        "vsch/user-privilege-mapper": "~1.0"
+        "vsch/user-privilege-mapper": "~2.0"
 
-2. After updating composer, add the ServiceProviders to the providers array in app/config/app.php and comment out the original TranslationServiceProvider:
+2. After updating composer, add the ServiceProviders to the providers array in config/app.php
 
-        'Vsch\UserPrivilegeMapper\UserPrivilegeMapperServiceProvider',
+        Vsch\UserPrivilegeMapper\UserPrivilegeMapperServiceProvider::class,
 
-3. add the Facade to the aliases array in app/config/app.php:
+3. add the Facade to the aliases array in config/app.php:
 
-        'UserCan' => 'Vsch\UserPrivilegeMapper\Facade\Privilege',
+        'UserCan'   => Vsch\UserPrivilegeMapper\Facade\Privilege::class,
 
-4. To create a mapping layer between your User model implementation and the need to test user privileges without knowing the implementation. You need to create named privileges for the UserPrivilegeMapper via the Laravel macro mechanism. This should be done in the initialization files. A good place is the filters.php file, add the following if your User model has is_admin and is_editor attributes to identify users that have Admin and Editor privileges:
+4. To create a mapping layer between your User model implementation and the need to test user privileges without knowing the implementation. You need to create named privileges for the UserPrivilegeMapper via the Laravel macro mechanism. This should be done in the initialization files. A good place is the Providers/AppServiceProvider.php file, add the following to boot() function, if your User model has is_admin and is_editor attributes to identify users that have Admin and Editor privileges or just `return true` in both cases if you don't have any way of determining user privileges:
 
         UserCan::macro("admin", function ()
         {
@@ -47,4 +47,4 @@ For Laravel 5 use the master branch, or require: `"user-privilege-mapper": "~2.0
 
     If a macro was not previously defined then the privilege test will return false. Effectively, if the macro is not implemented then the privilege is treated as not existent for every user.
 
-The implementation is more of a convention that is implemented by Laravel's MacroableTrait. I don't see this package changing unless I get an epiphany. So consider this package code complete. However, suggestions are appreciated and welcome. :)
+The implementation is more of a convention that is implemented by Laravel's Macroable trait. I don't see this package changing unless I get an epiphany. So consider this package code complete. However, suggestions are appreciated and welcome. :)
