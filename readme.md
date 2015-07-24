@@ -22,25 +22,25 @@ For Laravel 5 use the master branch, or require: `"vsch/user-privilege-mapper": 
 
         'UserCan'   => Vsch\UserPrivilegeMapper\Facade\Privilege::class,
 
-4. To create a mapping layer between your User model implementation and the need to test user privileges without knowing the implementation. You need to create named privileges for the UserPrivilegeMapper via the Laravel macro mechanism. This should be done in the initialization files. A good place is the Providers/AppServiceProvider.php file, add the following to boot() function, if your User model has is_admin and is_editor attributes to identify users that have Admin and Editor privileges or just `return true` in both cases if you don't have any way of determining user privileges:
+4. To create a mapping layer between your User model implementation and the need to test user privileges without knowing the implementation. You need to create named privileges for the UserPrivilegeMapper via the Laravel macro mechanism. This should be done in the initialization files. A good place is the app/Providers/AppServiceProvider.php file, add the following to boot() function, if your User model has is_admin and is_editor attributes to identify users that have Admin and Editor privileges or just `return true` in both cases if you don't have any way of determining user privileges:
 
-        UserCan::macro("admin", function ()
+        \UserCan::macro("admin", function ()
         {
             return ($user = Auth::user()) && $user->is_admin;
         });
 
-        UserCan::macro("edit", function ()
+        \UserCan::macro("edit", function ()
         {
             return ($user = Auth::user()) && ($user->is_admin || $user->is_editor);
         });
 
 5. Testing whether a privilege is available is as simple as:
 
-        if (UserCan::admin())
+        if (\UserCan::admin())
         {
             // user has admin privileges
         }
-        elseif (UserCan::edit())
+        elseif (\UserCan::edit())
         {
             // user has edit privileges
         }
