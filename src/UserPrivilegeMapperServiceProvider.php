@@ -1,4 +1,6 @@
-<?php namespace Vsch\UserPrivilegeMapper;
+<?php
+
+namespace Vsch\UserPrivilegeMapper;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -23,9 +25,8 @@ class UserPrivilegeMapperServiceProvider extends ServiceProvider {
 	 */
 	protected function registerUserPrivilegeMapper()
 	{
-		$this->app->bindShared('privilege', function($app)
-		{
-			return new UserPrivilegeMapper($app);
+		$this->app->singleton('privilege', function () {
+			return $this->app->make('Vsch\UserPrivilegeMapper\UserPrivilegeMapper');
 		});
 	}
 

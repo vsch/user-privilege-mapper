@@ -15,27 +15,12 @@ class UserPrivilegeMapper
 {
     use Macroable;
 
-    /**
-     * UserPrivilegeMapper constructor.
-     *
-     * @param $app
-     */
-    public
-    function __construct($app)
+    public static function __callStatic($method, $parameters)
     {
-    }
-
-    public static
-    function __callStatic($method, $parameters)
-    {
-        if (static::hasMacro($method))
-        {
-            if (static::$macros[$method] instanceof Closure)
-            {
+        if (static::hasMacro($method)) {
+            if (static::$macros[$method] instanceof Closure) {
                 return call_user_func_array(Closure::bind(static::$macros[$method], null, get_called_class()), $parameters);
-            }
-            else
-            {
+            } else {
                 return call_user_func_array(static::$macros[$method], $parameters);
             }
         }
@@ -43,17 +28,12 @@ class UserPrivilegeMapper
         return false;
     }
 
-    public
-    function __call($method, $parameters)
+    public function __call($method, $parameters)
     {
-        if (static::hasMacro($method))
-        {
-            if (static::$macros[$method] instanceof Closure)
-            {
+        if (static::hasMacro($method)) {
+            if (static::$macros[$method] instanceof Closure) {
                 return call_user_func_array(static::$macros[$method]->bindTo($this, get_class($this)), $parameters);
-            }
-            else
-            {
+            } else {
                 return call_user_func_array(static::$macros[$method], $parameters);
             }
         }
