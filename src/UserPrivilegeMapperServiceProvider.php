@@ -23,7 +23,7 @@ class UserPrivilegeMapperServiceProvider extends ServiceProvider {
 	 */
 	protected function registerUserPrivilegeMapper()
 	{
-		$this->app->bindShared('privilege', function($app)
+		$this->app->singleton('privilege', function($app)
 		{
 			return new UserPrivilegeMapper($app);
 		});
